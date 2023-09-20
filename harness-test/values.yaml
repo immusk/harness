@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: <+artifacts.primary.image>
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: nginx-sa
+  annotations: {}
+  label:
+    app: nginx
+    service: nginx
+
+service:
+  type: ClusterIP
+  port: 80
+
+releaseName: <+service.name>
